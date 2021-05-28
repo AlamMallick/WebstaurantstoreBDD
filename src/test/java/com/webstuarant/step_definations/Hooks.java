@@ -17,6 +17,8 @@ import org.openqa.selenium.TakesScreenshot;
 
 
         @Before
+
+
         public void setUp(Scenario scenario){
             if (scenario.getSourceTagNames().contains("@firefox")){
                 Driver.setDriver("firefox");

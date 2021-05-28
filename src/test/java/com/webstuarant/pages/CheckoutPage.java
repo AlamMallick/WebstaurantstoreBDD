@@ -1,29 +1,43 @@
 package com.webstuarant.pages;
 
-import com.webstuarant.utlities.Driver;
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class CheckoutPage {
-    public CheckoutPage() {
-        PageFactory.initElements(Driver.getDriver(), this);
+import static com.webstuarant.utlities.BrowserUtils.waitUntilVisible;
 
-    }
+
+public class CheckoutPage extends BasePage {
+
 
     @FindBy(xpath = "//a[.=\"Empty Cart\"]")
-public WebElement emptyCartButton;
+    public WebElement emptyCartButton;
 
     @FindBy(xpath = "//button[.=\"Empty Cart\"]")
     public WebElement verifyEmptyCartButton;
 
+    @FindBy(css = "p[class='header-1']")
+    public WebElement emptyCartHeader;
 
-    public void emptyingTheCart(){
-        emptyCartButton.click();
-        verifyEmptyCartButton.click();
 
+
+
+
+    public void waitForText(){
+        waitUntilVisible(emptyCartHeader);
+    }
+
+
+    public void verifyingTheEmptyCard(){
+        Assert.assertEquals(emptyCartHeader.getText(), "Your cart is empty.");
 
     }
+
+    public void waitAndClick() {
+        waitUntilVisible(verifyEmptyCartButton);
+        verifyEmptyCartButton.click();
+    }
+
 
 
 }

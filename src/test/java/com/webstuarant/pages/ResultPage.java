@@ -1,37 +1,43 @@
 package com.webstuarant.pages;
 
-import com.webstuarant.utlities.BrowserUtils;
 import com.webstuarant.utlities.Driver;
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+
 
 import java.util.List;
 
-public class ResultPage {
-
-    public ResultPage() {
-        PageFactory.initElements(Driver.getDriver(),this);
-
-    }
+public class ResultPage extends BasePage {
 
 
-    @FindBy(xpath= "//a[starts-with(@class,\"description\")]")
+    @FindBy(xpath = "//div[@id='product_listing']//a[contains(@class, \"description\")]")
     public List<WebElement> productItem;
 
-    @FindBy(xpath="(//a[@href='/regency-30-x-72-18-gauge-304-stainless-steel-commercial-work-table-with-galvanized-legs-and-undershelf/600T3072G.html'])[1]")
-    public WebElement lastProductItem;
+
+    @FindBy(xpath = "//input[starts-with(@name,\"addToCartButton\")]")
+    public List<WebElement> allAddToCartButton;
 
 
+    @FindBy(xpath = " //p[.='Related Searches']")
+    public WebElement scrollDownPoint;
 
-
-    public void theLastProduct() {
-        for (int i = 0; i <= productItem.size()-1 ; i++) {
-            if(i==productItem.size()-1){
-                productItem.get(i).click();
-        }
-
-            }
+    public void assertingTable(String itemName) {
+        List<WebElement> descriptions = productItem;
+        for (WebElement each : descriptions) {
+            Assert.assertTrue("Missing the table from description ", each.getText().contains(itemName));
         }
     }
+
+    public void scrollingDown() {
+        Actions actions = new Actions(Driver.getDriver());
+        actions.moveToElement(scrollDownPoint).perform();
+    }
+
+    public void clickTheLastElement() {
+        allAddToCartButton.get(allAddToCartButton.size() - 1).click();
+    }
+}
+
 

@@ -13,8 +13,8 @@ public class TestStepDefinitions {
     CheckoutPage checkoutPage = new CheckoutPage();
 
 
-    @Given("User in on Webstaurant Page")
-    public void user_in_on_webstaurant_page() {
+    @Given("User in on home Page")
+    public void user_in_on_home_page() {
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
     }
 

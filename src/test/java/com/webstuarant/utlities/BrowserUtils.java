@@ -73,40 +73,6 @@ public class BrowserUtils {
                 getElement(xpath, value));
     }
 
-    public static void scrollTo(String xpath) {
-        ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);",
-                getElement(xpath));
-    }
-
-    public static void scrollTo(WebElement element) {
-        ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);",
-                element);
-    }
-
-    public static void scrollAndClick(String xpath, String value) {
-        scrollTo(xpath, value);
-        clickElement(xpath, value);
-    }
-
-    public static boolean elementDisplayed(String xpath) {
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 5);
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).isDisplayed();
-    }
-
-    public static boolean elementDisplayed(String xpath, String value) {
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 5);
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format(xpath, value)))).isDisplayed();
-    }
-
-
-    public static List<String> getTextOfElements(List<WebElement> elements) {
-        List<String> texts = new ArrayList<>();
-        for (int i = 0; i < elements.size(); i++) {
-            WebElement eachElement = elements.get(i);
-            texts.add(eachElement.getText().trim());
-        }
-        return texts;
-    }
 
     public static WebElement waitUntilClickable(WebElement element) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 5);
@@ -118,21 +84,7 @@ public class BrowserUtils {
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public static boolean waitUntilTextToBe(WebElement element, String text) {
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 5);
-        return wait.until(ExpectedConditions.textToBePresentInElement(element, text));
-    }
 
-
-    public static void waitUntilTitleContains(String title) {
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 5);
-        wait.until(ExpectedConditions.titleContains(title));
-    }
-
-    public static void waitUntilTitleIs(String title) {
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 5);
-        wait.until(ExpectedConditions.titleIs(title));
-    }
 
 
     public static String getCurrentPageTitle() {

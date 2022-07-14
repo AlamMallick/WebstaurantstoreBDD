@@ -23,6 +23,7 @@ public class CheckoutPage extends BasePage {
 
 
 
+
     public void waitForText(){
         waitUntilVisible(emptyCartHeader);
     }

@@ -10,10 +10,10 @@ import static com.webstuarant.utlities.BrowserUtils.waitUntilVisible;
 public class CheckoutPage extends BasePage {
 
 
-    @FindBy(xpath = "//a[.=\"Empty Cart\"]")
+    @FindBy(xpath = "//button[text()='Empty Cart']")
     public WebElement emptyCartButton;
 
-    @FindBy(xpath = "//button[.=\"Empty Cart\"]")
+    @FindBy(xpath = "//*[@id=\"td\"]/div[11]/div/div/div/footer/button[1]")
     public WebElement verifyEmptyCartButton;
 
     @FindBy(css = "p[class='header-1']")
